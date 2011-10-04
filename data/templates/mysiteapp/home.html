@@ -1,0 +1,51 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_blog_post'>
+            <h3>Recent Blog Post</h3>
+            {% for blog in blogs %}
+                <h6>
+                    <a href='/blog/{{blog.slug}}'
+                        title='{{blog.title}}'>{{blog.title}}</a></br>
+                    {{blog.description}}
+                </h6>
+            {% endfor %}
+        </div>
+        <div id='recent_wiki_update'>
+            <h3>Recent Wiki Update</h3>
+            {% for wiki in wikis %}
+                <h6>
+                    <a href='/wiki/{{wiki.slug}}'
+                        title='{{wiki.title}}'>{{wiki.title}}</a></br>
+                    {{wiki.description}}
+                </h6>
+            {% endfor %}
+        </div>
+        <div id='recent_tutorial_post'>
+            <h3>Recent Tutorial Post</h3>
+            {% for tutorial in tutorials %}
+                <h6>
+                    <a href='/tutorial/{{tutorial.slug}}'
+                        title='{{tutorial.title}}'>{{tutorial.title}}</a></br>
+                    {{tutorial.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            <center><h3>Welcome to Pillar Dev & Designs!</h3></center>
+            {% for mainpagenote in mainpagenotes %}
+                <h6>
+                    {{mainpagenote.content}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

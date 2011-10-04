@@ -1,0 +1,35 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_subsection_posts'>
+            <h3>Recent Subcategory Posts</h3>
+            {% for subcat in wiki.subsection.wikipost_set.all %}
+                <h6>
+                    <a href='/wiki/{{subcat.slug}}'>{{subcat.title}}</a>
+                    </br>{{subcat.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+
+            <center>
+                <h1>{{wiki.section}}</br></h1>
+                <h2>{{wiki.subsection}}</br></h2>
+                <h4>{{wiki.title}}</br></h4>
+            </center>
+            <h6>{{wiki.content}}</br></h6>
+
+            <h6>
+                <a href='/editrequest/{{wiki.slug}}'>Edit this wiki</a>
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

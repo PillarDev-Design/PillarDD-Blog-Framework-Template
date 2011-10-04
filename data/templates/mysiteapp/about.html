@@ -1,0 +1,45 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recommended_sites'>
+            <h3>Recommended Sites!</h3>
+            ...<br>
+            ...<br>
+            ...<br>
+        </div>
+    </div>
+
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            This is the about me page.
+
+            {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if success %}
+                <h3>Thanks for the comment! Email away!</h3>
+            {% endif %}
+
+            <form action="/about/" method="POST">{% csrf_token %}
+                <p>Subject: <input type="text" name="subject"></p>
+                <p>Your e-mail (optional): <input type="text" name="e_mail"></p>
+                <p>Message: <textarea name="message" rows="10" cols="50"></textarea></p>
+                <input type="submit" value="Submit">
+            </form>
+
+
+
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

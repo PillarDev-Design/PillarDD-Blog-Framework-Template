@@ -1,0 +1,38 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_blog_posts'>
+            <h3>Recent Blog Posts</h3>
+            {% for blogside in blogsides %}
+                <h6>
+                    <a href='/blog/{{blogside.slug}}'
+                        title='{{blogside.title}}'>{{blogside.title}}</a></br>
+                    {{blogside.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            <form action="/blogsearch/" method="get">
+                <input type="text" name="q">
+                <input type="submit" value="Search">
+            </form>
+            <br>
+            {% for cat in categories %}
+                <h3>{{cat.name}}</h3>
+                {% for blog in cat.blogpost_set.all %}
+                    <a href='/blog/{{blog.slug}}'>{{blog.title}}</a>
+                    <h6>{{blog.description}}</h6>
+                    {% endfor %}
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

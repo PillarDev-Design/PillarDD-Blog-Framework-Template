@@ -1,0 +1,32 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_category_posts'>
+            <h3>Recent Category Posts</h3>
+            {% for blogcat in blog.category.blogpost_set.all %}
+                <h6>
+                    <a href='/blog/{{blogcat.slug}}'>{{blogcat.title}}</a>
+                    </br>{{blogcat.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            <h3>
+                <center>
+                    <h1>{{blog.category}}</br></h1>
+                    <h4>{{blog.title}}</br></h4>
+                </center>
+                <h6>{{blog.content}}</h6></br>
+            </h3>
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

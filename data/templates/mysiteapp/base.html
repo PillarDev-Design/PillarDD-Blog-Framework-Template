@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Pillar Dev & Designs</title>
+    <link href='/staticfiles/style.css' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <!-- Logo Wrapper -->
+    <div id='logo_wrapper'>
+        <h1>Pillar Dev & Designs</h1>
+    </div>
+    <!-- Site Nav -->
+    <div id='site_nav_wrapper'>
+        <a href='/' title='Home'>Home</a>
+        <a href='/blogs/' title='Blog'>Blog</a>
+        <a href='/wikis/' title='Wiki'>Wiki</a>
+        <a href='/tutorials/' title='Tutorials'>Tutorials</a>
+        <a href='/about/' title='About'>About</a>
+    </div>
+    <!-- Block Content -->
+    {% block content %}{% endblock content %}
+
+    <!-- Footer -->
+    <div id='footer_wrapper'>
+        Chris Nabors | RSS Feed
+    </div>
+</body>
+</html>

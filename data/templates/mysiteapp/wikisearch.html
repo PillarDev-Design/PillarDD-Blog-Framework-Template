@@ -1,0 +1,47 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_wiki_posts'>
+            <h3>Recent Wiki Posts</h3>
+            {% for wikiside in wikisides %}
+                <h6>
+                    <a href='/wiki/{{wikiside.slug}}'
+                        title='{{wikiside.title}}'>{{wikiside.title}}</a></br>
+                    {{wikiside.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            {% if error %}
+                <p style="color: red;">Please submit a search term.</p>
+            {% endif %}
+            <form action="/wikisearch/" method="get">
+                <input type="text" name="q">
+                <input type="submit" value="Search">
+            </form>
+            </br>
+
+            <p>You searched for: <strong>{{query}}</strong></p>
+            {% if wikis %}
+                <p>Found {{wikis|length}} wiki article{{wikis|pluralize}}.</p>
+                <ul>
+                    {% for wiki in wikis %}
+                        <a href='/wiki/{{wiki.slug}}'
+                            title='{{wiki.title}}'>{{wiki.title}}</a>
+                        <h6>{{wiki.description}}</h6>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No wiki articles matched your search criteria.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_tutorial_posts'>
+            <h3>Recent Tutorial Posts</h3>
+            {% for tutorialside in tutorialsides %}
+                <h6>
+                    <a href='/tutorial/{{tutorialside.slug}}'
+                        title='tutorialside.title'>{{tutorialside.title}}</a></br>
+                    {{tutorialside.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            {% if error %}
+                <p style="color: red;">Please submit a search term.</p>
+            {% endif %}
+            <form action="/tutorialsearch/" method="get">
+                <input type="text" name="q">
+                <input type="submit" value="Search">
+            </form>
+            </br>
+
+            <p>You searched for: <strong>{{query}}</strong></p>
+            {% if tutorials %}
+                <p>Found {{tutorials|length}} tutorial{{tutorials|pluralize}}.</p>
+                <ul>
+                {% for tutorial in tutorials %}
+                    <a href='/tutorial/{{tutorial.slug}}'
+                        title='{{tutorial.title}}'>{{tutorial.title}}</a>
+                    <h6>{{tutorial.description}}</h6>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No tutorials matched your search criteria.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

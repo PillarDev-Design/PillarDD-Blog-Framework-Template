@@ -1,0 +1,46 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='editing_subject'>
+            <h3>Something here to be decided</h3>
+        </div>
+    </div>
+
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            <center>
+                <h1>{{wiki.section}}<br/></h1>
+                <h2>{{wiki.subsection}}<br/></h2>
+                <h4>{{wiki.title}}<br/></h4>
+            </center>
+            <h6>{{wiki.content}}<br/></h6>
+
+            {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                        <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if success %}
+                <h3>Thanks for the update! Email away!</h3>
+            {% endif %}
+
+            <form action="/editrequest/{{wiki.slug}}/" method="POST">{% csrf_token %}
+                <p>Subject: {{wiki.title}}</p>
+                <p>Your e-mail (optional): <input type="text" name="e_mail"></p>
+                <p>Message: <textarea name="message" rows="10" cols="50"></textarea></p>
+                <input type="submit" value="Submit">
+            </form>
+
+
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_category_posts'>
+            <h3>Recent Category Posts</h3>
+            {% for tutcat in tutorial.category.tutorialpost_set.all %}
+                <h6>
+                    <a href='/tutorial/{{tutcat.slug}}'>{{tutcat.title}}</a>
+                    </br>{{tutcat.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            <h3>
+                <center>
+                    <h1>{{tutorial.category}}</h1>
+                    <h4>{{tutorial.title}}</h4>
+                </center>
+                <h6>{{tutorial.content}}</h6></br>
+            </h3>
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}

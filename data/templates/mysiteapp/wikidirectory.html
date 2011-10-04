@@ -1,0 +1,43 @@
+{% extends 'mysiteapp/base.html' %}
+{% block content %}
+
+<div id='content_wrapper'>
+    <div id='left_side_wrapper'>
+        <div id='recent_wiki_updates'>
+            <h3>Recent Wiki Updates</h3>
+            {% for wikiside in wikisides %}
+                <h6>
+                    <a href='/wiki/{{wikiside.slug}}'
+                        title='{{wikiside.title}}'>{{wikiside.title}}</a></br>
+                    {{wikiside.description}}
+                </h6>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Center Page Content -->
+    <div id='right_side_wrapper'>
+        <div id='content'>
+            <form action="/wikisearch/" method="get">
+                <input type="text" name="q">
+                <input type="submit" value="Search">
+            </form>
+            <br>
+            {% for sec in section %}
+                <h3>{{sec.name}}</h3>
+                {% for ssec in sec.wikisubsection_set.all %}
+                    <h5>{{ssec.name}}</h5>
+                    {% for wikilink in ssec.wikipost_set.all %}
+                        <a href='/wiki/{{wikilink.slug}}'>{{wikilink.title}}</a>
+                        <h6>{{wikilink.description}}</h6>
+                    {% endfor %}
+                    <hr>
+                {% endfor %}
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+    <div class='clear'></div>
+</div>
+
+{% endblock content %}
